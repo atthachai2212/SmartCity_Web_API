@@ -85,3 +85,7 @@ D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\obj\Debug\SmartCity_Web_A
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Cors.dll
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Http.Cors.dll
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Http.Cors.xml
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\EntityFramework.dll
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\EntityFramework.SqlServer.dll
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\EntityFramework.xml
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\EntityFramework.SqlServer.xml
