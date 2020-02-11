@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SmartCity_Web_API.Models;
+using SmartCity_Web_API.Services;
 
 namespace SmartCity_Web_API.Controllers
 {
@@ -18,18 +19,18 @@ namespace SmartCity_Web_API.Controllers
         private dbBusTrackingContext db = new dbBusTrackingContext();
 
         // GET: api/GPSTracking
-        [Route("api/GPSTracking/getData")]
+        [Route("api/gps")]
         public IQueryable<tbGPS> GettbGPS()
         {
             return db.tbGPS;
         }
 
         // GET: api/GPSTracking/5
-        [Route("api/GPSTracking/getData")]
+        [Route("api/gps")]
         [ResponseType(typeof(tbGPS))]
-        public async Task<IHttpActionResult> GettbGPS(DateTime id)
+        public async Task<IHttpActionResult> GettbGPS(DateTime date)
         {
-            tbGPS tbGPS = await db.tbGPS.FindAsync(id);
+            tbGPS tbGPS = await db.tbGPS.FindAsync(date);
             if (tbGPS == null)
             {
                 return NotFound();
@@ -39,16 +40,16 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // PUT: api/GPSTracking/5
-        [Route("api/GPSTracking/updateData")]
+        [Route("api/gps")]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PuttbGPS(DateTime id, tbGPS tbGPS)
+        public async Task<IHttpActionResult> PuttbGPS(DateTime date, tbGPS tbGPS)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tbGPS.Date)
+            if (date != tbGPS.Date)
             {
                 return BadRequest();
             }
@@ -61,7 +62,7 @@ namespace SmartCity_Web_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tbGPSExists(id))
+                if (!tbGPSExists(date,tbGPS.Time,tbGPS.ID))
                 {
                     return NotFound();
                 }
@@ -75,13 +76,13 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // POST: api/GPSTracking
-        [Route("api/GPSTracking/addData")]
+        [Route("api/gps")]
         [ResponseType(typeof(tbGPS))]
         public async Task<IHttpActionResult> PosttbGPS(tbGPS tbGPS)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState.GetErrorModelState());
             }
 
             db.tbGPS.Add(tbGPS);
@@ -92,7 +93,7 @@ namespace SmartCity_Web_API.Controllers
             }
             catch (DbUpdateException)
             {
-                if (tbGPSExists(tbGPS.Date))
+                if (tbGPSExists(tbGPS.Date,tbGPS.Time,tbGPS.ID))
                 {
                     return Conflict();
                 }
@@ -101,12 +102,12 @@ namespace SmartCity_Web_API.Controllers
                     throw;
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = tbGPS.Date }, tbGPS);
+            return Json(tbGPS);
+            //return CreatedAtRoute("DefaultApi", new {  Date = tbGPS.Date, Time = tbGPS.Time, ID = tbGPS.ID }, tbGPS);
         }
 
         // DELETE: api/GPSTracking/5
-        [Route("api/GPSTracking/deleteData")]
+        [Route("api/gps")]
         [ResponseType(typeof(tbGPS))]
         public async Task<IHttpActionResult> DeletetbGPS(DateTime id)
         {
@@ -131,9 +132,9 @@ namespace SmartCity_Web_API.Controllers
             base.Dispose(disposing);
         }
 
-        private bool tbGPSExists(DateTime id)
+        private bool tbGPSExists(DateTime date, TimeSpan time, int id)
         {
-            return db.tbGPS.Count(e => e.Date == id) > 0;
+            return db.tbGPS.Count(e => e.Date == date && e.Time == time && e.ID == id) > 0;
         }
     }
 }
