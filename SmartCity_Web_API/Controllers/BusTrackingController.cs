@@ -19,12 +19,14 @@ namespace SmartCity_Web_API.Controllers
         private dbBusTrackingContext db = new dbBusTrackingContext();
 
         // GET: api/BusTracking
+        [Route("api/busTracking")]
         public IQueryable<tbGPS_Realtime> GettbGPS_Realtime()
         {
             return db.tbGPS_Realtime;
         }
 
         // GET: api/BusTracking/5
+        [Route("api/busTracking")]
         [ResponseType(typeof(tbGPS_Realtime))]
         public async Task<IHttpActionResult> GettbGPS_Realtime(DateTime id)
         {
@@ -38,12 +40,13 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // PUT: api/BusTracking/5
+        [Route("api/busTracking")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PuttbGPS_Realtime(DateTime id, tbGPS_Realtime tbGPS_Realtime)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState.GetErrorModelState());
             }
 
             if (id != tbGPS_Realtime.Date)
@@ -73,6 +76,7 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // POST: api/BusTracking
+        [Route("api/busTracking")]
         [ResponseType(typeof(tbGPS_Realtime))]
         public async Task<IHttpActionResult> PosttbGPS_Realtime(tbGPS_Realtime tbGPS_Realtime)
         {
@@ -98,11 +102,12 @@ namespace SmartCity_Web_API.Controllers
                     throw;
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = tbGPS_Realtime.Date }, tbGPS_Realtime);
+            return Json(tbGPS_Realtime);
+            //return CreatedAtRoute("DefaultApi", new { id = tbGPS_Realtime.Date }, tbGPS_Realtime);
         }
 
         // DELETE: api/BusTracking/5
+        [Route("api/busTracking")]
         [ResponseType(typeof(tbGPS_Realtime))]
         public async Task<IHttpActionResult> DeletetbGPS_Realtime(DateTime id)
         {
