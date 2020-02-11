@@ -18,12 +18,14 @@ namespace SmartCity_Web_API.Controllers
         private dbBusTrackingContext db = new dbBusTrackingContext();
 
         // GET: api/GPSTracking
+        [Route("api/GPSTracking/getData")]
         public IQueryable<tbGPS> GettbGPS()
         {
             return db.tbGPS;
         }
 
         // GET: api/GPSTracking/5
+        [Route("api/GPSTracking/getData")]
         [ResponseType(typeof(tbGPS))]
         public async Task<IHttpActionResult> GettbGPS(DateTime id)
         {
@@ -37,6 +39,7 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // PUT: api/GPSTracking/5
+        [Route("api/GPSTracking/updateData")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PuttbGPS(DateTime id, tbGPS tbGPS)
         {
@@ -72,6 +75,7 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // POST: api/GPSTracking
+        [Route("api/GPSTracking/addData")]
         [ResponseType(typeof(tbGPS))]
         public async Task<IHttpActionResult> PosttbGPS(tbGPS tbGPS)
         {
@@ -102,6 +106,7 @@ namespace SmartCity_Web_API.Controllers
         }
 
         // DELETE: api/GPSTracking/5
+        [Route("api/GPSTracking/deleteData")]
         [ResponseType(typeof(tbGPS))]
         public async Task<IHttpActionResult> DeletetbGPS(DateTime id)
         {
