@@ -82,3 +82,6 @@ D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\obj\Debug\SmartCity_Web_A
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\obj\Debug\SmartCity_Web_API.csproj.CopyComplete
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\obj\Debug\SmartCity_Web_API.dll
 D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\obj\Debug\SmartCity_Web_API.pdb
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Cors.dll
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Http.Cors.dll
+D:\LocalRepository\SmartCity_Web_API\SmartCity_Web_API\bin\System.Web.Http.Cors.xml
